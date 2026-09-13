@@ -1,0 +1,22 @@
+name: AWS OIDC Challenge
+
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  test-aws-oidc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::664418972046:role/github-oidc-challenge-role
+          aws-region: us-west-2
+
+      - run: aws sts get-caller-identity
+      - run: aws s3 ls
