@@ -57,3 +57,32 @@ jobs:
       - run: aws sts get-caller-identity
       - run: aws s3 ls
 ```
+## Verification
+
+The GitHub Actions workflow completed successfully after configuring the IAM trust policy for the immutable OIDC subject claim.
+
+### Screenshots
+
+### 1. AWS OIDC Provider
+
+![OIDC Provider](./day5-01-oidc-provider.PNG)
+
+### 2. GitHub OIDC Configuration
+
+![GitHub OIDC Configuration](./day5-04-github-oidc-settings.PNG)
+
+### 3. Updated IAM Trust Policy
+
+![IAM Trust Policy](./day5-05-updated-trust-policy.PNG)
+
+### 4. GitHub Actions Successful Run
+
+![GitHub Actions Success](./day5-03-github-actions-success.PNG)
+
+## Key Learning
+
+GitHub Actions can authenticate with AWS using OIDC without storing long-lived AWS access keys.
+
+The GitHub OIDC token is exchanged with AWS STS, which allows GitHub Actions to assume the configured IAM role.
+
+This provides a more secure approach for CI/CD authentication because AWS credentials do not need to be stored as long-lived GitHub secrets.
