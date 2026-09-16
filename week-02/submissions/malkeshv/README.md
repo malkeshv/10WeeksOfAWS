@@ -27,3 +27,46 @@ This submission documents my hands-on practice with AWS IAM Roles, STS temporary
 The EC2 instance can access AWS services securely through an IAM role without storing permanent AWS access keys.
 
 The role provides only the permissions required for the task, following the principle of least privilege.
+
+
+
+
+
+
+---
+
+## Day 4 - AWS Organizations, SCPs & IAM Identity Center
+
+This submission documents my hands-on practice with AWS Organizations,
+Organizational Units (OUs), Service Control Policies (SCPs), IAM Identity
+Center, temporary STS sessions, and consolidated billing.
+
+### What I Practiced
+
+- Created an AWS Organization with a management account and member account
+- Created a `Dev-Env` Organizational Unit
+- Created and attached the `Deny-S3-Bucket-Creation` SCP
+- Enabled AWS IAM Identity Center in Mumbai (`ap-south-1`)
+- Created the `malkesh-demo` Identity Center user
+- Created the `CloudAdhar-Admin` permission set using `AdministratorAccess`
+- Assigned the permission set to the member account
+- Configured AWS Access Portal authentication and MFA
+- Verified the Identity Center session using AWS STS
+- Tested S3 bucket creation before the SCP was applied
+- Moved the member account into the `Dev-Env` OU
+- Tested S3 bucket creation after the SCP was applied
+- Confirmed the SCP explicit deny using `AccessDenied`
+- Deleted the temporary S3 test bucket
+- Moved the member account back to Root after the lab
+
+### Key Learning
+
+The practical demonstrated that an IAM permission or permission set can allow
+an action, but an applicable SCP can still explicitly deny that action.
+
+```text
+Identity Center Permission Set: Allow
+                +
+Dev-Env SCP: Explicit Deny
+                =
+Final Result: Deny
