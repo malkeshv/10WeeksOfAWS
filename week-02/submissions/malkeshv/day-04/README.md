@@ -183,6 +183,12 @@ This helped me understand the difference between **permissions** and
 - [Organizations SCP Lab](./09-organizations-scp-lab.md)
 
 ---
+---
+
+## Architecture Diagrams
+
+- [AWS Organizations Architecture](./diagrams/aws-organizations-architecture.png)
+- [SCP Permission Flow](./diagrams/permission-flow.png)
 
 ## Cleanup
 
