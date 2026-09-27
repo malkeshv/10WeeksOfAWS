@@ -67,3 +67,48 @@ VPC-A
     │
     └── Private-B
         └── 10.10.13.0/24
+---
+
+## 12. IP Address Capacity
+
+Each `/24` subnet contains:
+
+- Total IPv4 addresses: `256`
+- AWS usable IPv4 addresses: `251`
+
+### Subnet Capacity
+
+| Subnet | CIDR | Total IPv4 Addresses | AWS Usable IPv4 Addresses |
+|---|---|---:|---:|
+| Public-A | `10.10.1.0/24` | 256 | 251 |
+| Public-B | `10.10.2.0/24` | 256 | 251 |
+| Private-A | `10.10.12.0/24` | 256 | 251 |
+| Private-B | `10.10.13.0/24` | 256 | 251 |
+
+### VPC Capacity
+
+VPC-A uses:
+
+`10.10.0.0/20`
+
+A `/20` contains:
+
+- Total IPv4 addresses: `4096`
+
+The four `/24` subnets each provide 256 addresses, with 251 AWS-usable addresses per subnet.
+
+### AWS Reserved Addresses
+
+AWS reserves five IPv4 addresses in each subnet:
+
+1. Network address
+2. VPC router
+3. DNS address
+4. Reserved for future use
+5. Broadcast address
+
+Therefore, a `/24` subnet has:
+
+`256 - 5 = 251`
+
+AWS-usable IPv4 addresses.
