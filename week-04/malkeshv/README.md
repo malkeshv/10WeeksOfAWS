@@ -31,7 +31,17 @@
 
 ## Architecture Decision
 
-Write 200-300 words.
+For this lab, I used Amazon EC2 with Amazon Linux 2023 to build and validate a reusable Golden AMI.
+
+The lab started with a builder EC2 instance named `malkesh-ec2-ami-builder`. An IAM role with the `AmazonSSMManagedInstanceCore` policy was attached to the instance so that I could access it using AWS Systems Manager Session Manager without relying on SSH.
+
+Nginx was installed and configured on the builder instance using EC2 User Data. I verified that the nginx service was enabled and active and that the custom HTML page was returning HTTP 200.
+
+I also practiced EC2 Instance Metadata Service Version 2 (IMDSv2). A metadata request without a token returned HTTP 401 as expected, while a request using an IMDSv2 token successfully returned instance metadata such as the instance ID and Availability Zone.
+
+After configuring and validating the builder instance, I created a private Golden AMI named `malkesh-ami-nginx-golden-v1`. I then launched a new test EC2 instance named `malkesh-ec2-ami-test` from this AMI without using User Data.
+
+The final validation confirmed that nginx was already installed, enabled, active, and serving the custom page with HTTP 200. This demonstrated how a Golden AMI can provide a standardized and reusable base image for future EC2 instances.
 
 ## Cleanup
 
